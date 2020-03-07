@@ -1,7 +1,8 @@
 /*
     ----------  2020/03/07 -----------
     1. compile error
-    2. 題目理解不清楚 
+    2. 題目理解不清楚
+	3. 多一個 =  
 */
 #include <stdio.h>
 #include <iostream>
@@ -30,7 +31,7 @@ int main()
 	{
 		for (int j=k-1;j>=0;j--)
 		{
-			if (i <= b[j])
+			if (i < b[j])
 			{
 				cout << a[j][i];
 			}
