@@ -1,31 +1,42 @@
+/*
+    ------------ 2020/03/10 --------------
+    1. wrong answer
+    2. 第 19 行是 < 而非 <= 
+*/
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
 using namespace std;
+
 int main()
 {
-	int a,b,c,d,e,f,g,h,i;
+	long long a=0,b=0;
 	cin >> a;
 	while(a--)
 	{
-		cin >> b;
-		cin >> c;
-		if (b>=c)
+		long long c=0,d=0,e=0,f=0,flag=0;
+		cin >> c >> d;
+		if (c < d)
 		{
-			d = b+c;
-			e = b-c;
-			f = d%2;
-			g = e%2;
-			if (f==0 && g==0)
+			cout << "impossible" << endl;
+			continue;
+		}
+		for (int i=0;i<=c;i++)
+		{
+			f = i;
+			e = abs(c-f);
+			if (abs(f-e)== d)
 			{
-				h = d/2;
-				i = e/2;
-				cout << h << " " << i << endl;
+				flag = 1;
+				break;
 			}
+		}
+		if (flag == 1)
+		{
+			if (f>=e)
+			    cout << f << " " << e << endl;
 			else
-			{
-				cout << "impossible" << endl;
-			}
+			    cout << e << " " << f << endl;
 		}
 		else
 		{
