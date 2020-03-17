@@ -1,67 +1,48 @@
 /*
-    CPE 一顆星
-	UVA10057
-	//// 提示 : 中位數 
-	1.題目理解不清楚
-	2.耗時太久 
+    ------------- 2020/03/17 --------------------------
+    uva10057
+    1. 找出中位數。
+	2. 計算有幾個和中位數一樣的數字。資料(cases)是偶數個時中位數有2個、資料是奇數個時中位數有1個。
+	3. 找出可能有幾種最小值(包含不在所輸入的資料裡面)，資料為奇數個時答案為1，資料為偶數個時答案為2個中位數相減加1。
 */
 #include <iostream>
-#include <cstdlib> 
-#include <vector>
-#include <algorithm> 
+#include <cstdlib>
+#include <cmath>
+#include <algorithm>
 using namespace std;
-int main()
+
+int main() 
 {
-	int in;
-	unsigned int a;
-	while(cin >> in)
+	int n=0;
+	while(cin >> n)
 	{
-		int k1=in-1,k2=in,a1=0,a2=0,a3=0;
-		vector<unsigned int> my;
-		for (int i=0;i<in;i++)
+		int m[n],k=0,A1=0,flag = 0;
+		for (int i =0;i<n;i++)
 		{
-			cin >> a;
-			my.push_back(a);
+			cin >> m[i];
 		}
-		sort(my.begin(),my.end());
-		a1 = k1/2;
-		cout << my[a1];
-		for (int j=0;j<in;j++)
+		sort(&m[0],&m[n]);
+		if ((n%2) == 0)
 		{
-			if (my[j] == my[a1])
-			    a2++;
-		}
-		if (k2%2 !=0)
-		{
-			cout << " " << a2;
-		}
-		else
-		{
-			if(my[a1] == my[a1+1])
-			    cout << " " << a2;
-			else
+			k = (n-1)/2;
+			A1 = abs(m[k+1]-m[k])+1;
+			for (int i=0;i<n;i++)
 			{
-				for (int o=0;o<in;o++)
-				{
-					if (my[o] == my[a1+1])
-					    a2++;
-				}
-				cout << " " << a2;
+				if ((m[i] == m[k]) || (m[i] == m[k+1]))
+				    flag++;
 			}
-		}
-		
-		
-		
-		if ((k2%2) != 0)
-		{
-			cout << " "<< 1;
+			cout << m[k] << " " << flag << " " << A1 <<endl;
 		}
 		else
 		{
-			a1 = k2/2;
-			a3 = (my[a1]-my[a1-1]);
-			cout << " " << a3+1;
+			k = (n-1)/2;
+			for (int i=0;i<n;i++)
+			{
+				if ((m[i] == m[k]))
+				    flag++;
+			}
+			cout << m[k] << " " << flag << " " << 1 << endl;
 		}
-		cout << '\n';
 	}
+	return 0;
 }
